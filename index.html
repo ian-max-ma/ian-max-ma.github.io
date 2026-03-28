@@ -9,11 +9,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-  <!-- FullCalendar v6 -->
-  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
-  <!-- ical.js for ICS parsing -->
-  <script src="https://cdn.jsdelivr.net/npm/ical.js@2.0.0/build/ical.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -25,7 +20,7 @@
       --dark:   #111;
       --border: #e5e5e5;
       --nav-h:  70px;
-      --max:    1100px;   /* wider — removes the side gap */
+      --max:    1320px;
     }
 
     html { scroll-behavior: smooth; }
@@ -295,7 +290,7 @@
       display: block;
     }
 
-    /* ── FullCalendar wrapper ── */
+    /* ── Calendar iframe wrapper ── */
     .cal-wrap {
       background: #fff;
       border: 1px solid var(--border);
@@ -303,18 +298,6 @@
       padding: 1.25rem;
       box-shadow: 0 2px 12px rgba(0,0,0,.05);
     }
-
-    /* FullCalendar style overrides */
-    .fc { font-family: 'Inter', sans-serif; font-size: .87rem; }
-    .fc .fc-toolbar-title { font-family: 'Raleway', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--dark); }
-    .fc .fc-button { background: var(--link) !important; border-color: var(--link) !important; font-size: .8rem !important; padding: .28rem .65rem !important; border-radius: 4px !important; font-family: 'Inter', sans-serif !important; }
-    .fc .fc-button:hover { background: var(--link-h) !important; }
-    .fc .fc-button-active { background: var(--link-h) !important; }
-    .fc .fc-col-header-cell-cushion { font-weight: 600; color: var(--dark); text-decoration: none; }
-    .fc .fc-daygrid-day-number { color: var(--text); text-decoration: none; }
-    .fc .fc-event { background: var(--link) !important; border-color: var(--link) !important; font-size: .76rem !important; border-radius: 3px !important; }
-    .fc .fc-day-today { background: #eef4ff !important; }
-    .fc-theme-standard td, .fc-theme-standard th { border-color: #eee !important; }
 
     /* ICS status badge */
     .cal-sources {
@@ -351,94 +334,127 @@
       letter-spacing: -.02em;
     }
 
-    /* Timeline */
-    .timeline { position: relative; padding-left: 0; }
-
-    .tl-item {
+    /* ── Experience card layout ── */
+    .exp-layout {
       display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 0 2.2rem;
-      margin-bottom: 2.5rem;
-      position: relative;
+      grid-template-columns: 190px 1fr;
+      gap: 0 3.5rem;
+      align-items: start;
     }
-    .tl-item::before {
-      /* vertical connector line */
+    .exp-sidebar .section-heading {
+      position: sticky;
+      top: 90px;
+      margin-bottom: 0;
+    }
+    .exp-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+      position: relative;
+      padding-left: 2rem;
+    }
+    /* vertical connector line */
+    .exp-cards::before {
       content: '';
       position: absolute;
-      left: 160px;
-      top: 12px;
-      bottom: -2.5rem;
+      left: 0;
+      top: 14px;
+      bottom: 14px;
       width: 2px;
       background: var(--border);
-      transform: translateX(-50%);
     }
-    .tl-item:last-child::before { display: none; }
-
-    .tl-date {
-      text-align: right;
-      padding-top: .1rem;
-      font-size: .84rem;
-      color: var(--muted);
-      line-height: 1.5;
-      padding-right: 1rem;
-    }
-
-    .tl-body {
-      padding-left: 1.4rem;
-      border-left: 2px solid var(--border);
+    /* dot per card */
+    .exp-card {
       position: relative;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem 1.75rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,.045);
+      transition: box-shadow .2s;
     }
-    .tl-body::before {
-      /* dot on the timeline */
+    .exp-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.09); }
+    /* all dots: hollow grey by default */
+    .exp-card::before {
       content: '';
       position: absolute;
-      left: -6px; top: 8px;
-      width: 10px; height: 10px;
+      left: -2.5rem;
+      top: 1.3rem;
+      width: 11px; height: 11px;
       border-radius: 50%;
+      background: #fff;
+      border: 2px solid #bbb;
+      box-shadow: none;
+    }
+    /* first card (current role): filled blue */
+    .exp-card:first-child::before {
       background: var(--link);
-      border: 2px solid #fff;
+      border-color: #fff;
       box-shadow: 0 0 0 2px var(--link);
     }
-
-    .tl-role {
+    .exp-card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: .9rem;
+    }
+    .exp-card-logo {
+      width: 44px; height: 44px;
+      object-fit: contain;
+      border-radius: 8px;
+      border: 1px solid #eee;
+      padding: 4px;
+      background: #fff;
+      flex-shrink: 0;
+    }
+    .exp-card-info { flex: 1; min-width: 0; }
+    .exp-card-title {
       font-family: 'Raleway', sans-serif;
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: var(--dark);
-      margin-bottom: .1rem;
+      margin-bottom: .18rem;
     }
-    .tl-company {
-      font-size: .95rem;
+    .exp-card-company {
+      font-size: .9rem;
+      font-weight: 600;
       color: var(--link);
-      font-weight: 500;
-      margin-bottom: .5rem;
+      margin-bottom: .15rem;
     }
-    .tl-company a { color: var(--link); }
-    .tl-company a:hover { color: var(--link-h); }
-    .tl-loc {
-      font-size: .83rem;
+    .exp-card-company a { color: var(--link); text-decoration: none; }
+    .exp-card-company a:hover { color: var(--link-h); }
+    .exp-card-meta {
+      font-size: .8rem;
       color: var(--muted);
-      margin-bottom: .6rem;
     }
-    .tl-desc {
-      font-size: .95rem;
+    .exp-card-meta span + span::before {
+      content: ' · ';
+    }
+    .exp-desc {
+      font-size: .93rem;
       color: var(--text);
-      line-height: 1.75;
+      line-height: 1.78;
     }
-    .tl-desc ul { padding-left: 1.3rem; margin: 0; }
-    .tl-desc li { margin-bottom: .3rem; }
-    .tl-tags {
-      margin-top: .7rem;
+    .exp-desc ul { padding-left: 1.2rem; margin: 0 0 .6rem; }
+    .exp-desc li { margin-bottom: .32rem; }
+    .exp-tags {
       display: flex; gap: .4rem; flex-wrap: wrap;
+      margin-top: .75rem;
     }
-    .tl-tag {
+    .exp-tag {
       display: inline-block;
       padding: .15rem .65rem;
       border-radius: 20px;
       background: #eef4ff;
       color: var(--link);
-      font-size: .75rem;
+      font-size: .74rem;
       font-weight: 600;
+    }
+    @media (max-width: 760px) {
+      .exp-layout { grid-template-columns: 1fr; }
+      .exp-sidebar .section-heading { position: static; margin-bottom: 1.5rem; }
+      .exp-cards { padding-left: 0; }
+      .exp-cards::before, .exp-card::before { display: none; }
     }
 
     /* ══════════════════════
@@ -709,7 +725,7 @@
      ══════════════════════ -->
 <nav id="navbar">
   <div class="nav-inner">
-    <a class="nav-brand" href="#about">Academic</a>
+    <a class="nav-brand" href="#about">Ian Ma</a>
 
     <button class="nav-toggle"
             onclick="this.nextElementSibling.classList.toggle('open')"
@@ -755,7 +771,7 @@
           <div class="portrait-name">Yihao Ma 马邑昊</div>
           <div class="portrait-role">MSc Student @ Imperial College London</div>
           <div class="portrait-org">
-            <a href="https://www.imperial.ac.uk/business-school/programmes/msc-risk-management-financial-engineering/"
+            <a href="https://www.imperial.ac.uk/business-school/masters/risk-management/"
                target="_blank">Imperial College London</a>
           </div>
 
@@ -793,29 +809,28 @@
           <p class="bio-para">
             Hi, I'm Yihao (Ian) Ma, currently an MSc student in
             <strong>Risk Management &amp; Financial Engineering</strong> at
-            <a href="https://www.imperial.ac.uk/" target="_blank">Imperial College London</a>.
-            My research interests lie at the intersection of
-            <strong>quantitative finance</strong>, <strong>data science</strong>,
-            and <strong>financial engineering</strong> — building rigorous,
-            data-driven tools that bridge academic theory and real-world market dynamics.
+            <a href="https://www.imperial.ac.uk/business-school/masters/risk-management/" target="_blank">Imperial College London</a>.
+            My interests sit at the intersection of <strong>quantitative finance</strong> and
+            <strong>data science</strong>, with a focus on how market microstructure,
+            derivatives, and machine learning can be combined to understand and navigate
+            real-world market dynamics.
           </p>
 
           <p class="bio-para">
-            Previously, I interned as a Data Science Intern at
-            <a href="https://www.tiktok.com/" target="_blank"><strong>TikTok UK</strong></a>
-            and <a href="https://www.bytedance.com/" target="_blank"><strong>ByteDance</strong></a>,
-            and as a Derivative Trading Research Intern at
-            <strong>Industrial Securities</strong>, where I developed options pricing models
-            and backtested delta-hedging strategies. I hold a
-            <strong>First Class BBA in Finance (GPA 3.99/4, Rank 1)</strong>
-            from <a href="https://www.uic.edu.hk/" target="_blank">Beijing Normal Hong Kong Baptist University</a>.
+            I interned as a Data Science Intern at <strong>TikTok UK / ByteDance</strong>,
+            conducting metric attribution analysis and user retention strategy research, and
+            as a Derivative Trading Research Intern at <strong>Industrial Securities</strong>,
+            developing options pricing models and backtesting delta-hedging strategies. I am a
+            <strong>2025 CFA Research Challenge Local Final Champion</strong> and a member of
+            the Quantitative Engineering team at the <strong>Imperial Student Investment Fund</strong>.
           </p>
 
           <p class="bio-para">
-            I am a <strong>2025 CFA Research Challenge Local Final Champion</strong> and
-            National Grand Prize winner at the CMAU Market Research Competition.
-            I am always open to new challenges — if you are looking for someone rigorous,
-            curious and driven, <a href="mailto:ianyihaoma@163.com">find me</a>.
+            Outside of finance, I enjoy building AI tools and side projects, photography
+            and travel, and staying active through cycling and tennis. I am actively seeking
+            opportunities in quantitative finance and data science — please feel free to
+            reach out via <a href="mailto:ianyihaoma@163.com">email</a> or
+            <a href="https://www.linkedin.com/in/yihao-ma-9297a42b6/" target="_blank">LinkedIn</a>.
           </p>
 
           <!-- Interests + Education two columns -->
@@ -826,23 +841,23 @@
               <ul class="int-list">
                 <li>
                   <i class="fas fa-chart-line"></i>
-                  Quantitative Trading &amp; Derivatives
+                  Quantitative Finance &amp; Derivatives
                 </li>
                 <li>
                   <i class="fas fa-brain"></i>
                   Machine Learning in Finance
                 </li>
                 <li>
-                  <i class="fas fa-shield-halved"></i>
-                  Risk Modelling &amp; Valuation
+                  <i class="fas fa-robot"></i>
+                  Building AI Tools &amp; Side Projects
                 </li>
                 <li>
-                  <i class="fas fa-database"></i>
-                  Data Science &amp; Business Intelligence
+                  <i class="fas fa-camera"></i>
+                  Photography &amp; Travel
                 </li>
                 <li>
-                  <i class="fas fa-gears"></i>
-                  Financial Engineering
+                  <i class="fas fa-person-biking"></i>
+                  Cycling &amp; Tennis
                 </li>
               </ul>
             </div>
@@ -884,21 +899,19 @@
       View my availability — synced live from Outlook (Imperial College London).
     </p>
 
-    <div class="schedule-grid">
-      <div class="cal-sources">
-        <span class="cal-source-badge outlook" id="cal-status">
-          <i class="fab fa-microsoft"></i> Outlook · 加载中…
-        </span>
-      </div>
+    <div class="cal-sources">
+      <span class="cal-source-badge outlook">
+        <i class="fab fa-microsoft"></i> Outlook · Imperial College London
+      </span>
+    </div>
 
-      <div class="cal-wrap">
-        <div id="cal-error" style="display:none; padding:1.5rem; text-align:center; color:#888; font-size:.9rem;">
-          <i class="fas fa-calendar-xmark" style="font-size:2rem; display:block; margin-bottom:.7rem; color:#ddd;"></i>
-          日历暂时无法加载。请稍后刷新，或直接
-          <a href="mailto:ianyihaoma@163.com">发邮件</a>联系我。
-        </div>
-        <div id="calendar"></div>
-      </div>
+    <div class="cal-wrap">
+      <iframe
+        src="https://outlook.office365.com/owa/calendar/23cc44178634439a98f6378410b27018@imperial.ac.uk/5199c2df17c54c69979c1aa4d3befa68587884087647201419/calendar.html"
+        style="width:100%; height:660px; border:none; border-radius:6px;"
+        title="Outlook Calendar"
+        loading="lazy"
+      ></iframe>
     </div>
   </div>
 </section>
@@ -908,111 +921,130 @@
      ══════════════════════════════════════ -->
 <section id="experience">
   <div class="container">
-    <h2 class="section-heading">Experience</h2>
+    <div class="exp-layout">
 
-    <div class="timeline">
-
-      <!-- TikTok UK -->
-      <div class="tl-item">
-        <div class="tl-date">Jun 2024 – Sep 2024</div>
-        <div class="tl-body">
-          <div class="tl-role">Data Science Intern</div>
-          <div class="tl-company">
-            <a href="https://www.tiktok.com/" target="_blank">TikTok UK</a>
-          </div>
-          <div class="tl-loc"><i class="fas fa-location-dot"></i>&nbsp; London, United Kingdom</div>
-          <div class="tl-desc">
-            <ul>
-              <li>Built and deployed machine-learning models to optimise content recommendation and creator growth, directly impacting platform engagement metrics.</li>
-              <li>Designed A/B testing frameworks and conducted statistical analysis on large-scale user behaviour datasets to validate product hypotheses.</li>
-              <li>Collaborated cross-functionally with product and engineering teams to translate analytical insights into actionable roadmap items.</li>
-            </ul>
-          </div>
-          <div class="tl-tags">
-            <span class="tl-tag">Python</span>
-            <span class="tl-tag">Machine Learning</span>
-            <span class="tl-tag">A/B Testing</span>
-            <span class="tl-tag">SQL</span>
-            <span class="tl-tag">Data Science</span>
-          </div>
-        </div>
+      <div class="exp-sidebar">
+        <h2 class="section-heading">Experience</h2>
       </div>
 
-      <!-- ByteDance -->
-      <div class="tl-item">
-        <div class="tl-date">Jun 2023 – Sep 2023</div>
-        <div class="tl-body">
-          <div class="tl-role">Data Science Intern</div>
-          <div class="tl-company">
-            <a href="https://www.bytedance.com/" target="_blank">ByteDance</a>
+      <div class="exp-cards">
+
+        <!-- TikTok UK -->
+        <div class="exp-card">
+          <div class="exp-card-header">
+            <img class="exp-card-logo" src="tiktok uk.png" alt="TikTok UK" />
+            <div class="exp-card-info">
+              <div class="exp-card-title">User Product Data Science Intern</div>
+              <div class="exp-card-company"><a href="https://www.tiktok.com/" target="_blank">TikTok UK</a></div>
+              <div class="exp-card-meta">
+                <span>Sept 2025 – Present</span>
+                <span>London, United Kingdom</span>
+              </div>
+            </div>
           </div>
-          <div class="tl-loc"><i class="fas fa-location-dot"></i>&nbsp; Beijing, China</div>
-          <div class="tl-desc">
+          <div class="exp-desc">
             <ul>
-              <li>Developed data pipelines and dashboards for real-time monitoring of core business KPIs across multiple product lines.</li>
-              <li>Applied NLP and clustering techniques to extract insights from user-generated content, informing strategy for international markets.</li>
-              <li>Wrote production-grade Python scripts for ETL workflows processing billions of daily events.</li>
+              <li>Built core data dashboards for C-end product lines and marketing incentive metrics; conducted <strong>root-cause attribution analysis</strong> during indicator anomalies, supporting data-driven decisions that contributed to platform revenue metric improvements.</li>
+              <li>Designed and deployed an <strong>AI agent pipeline</strong> with integrated analytical capabilities into the dashboard portal, enabling product teams to perform self-serve drill-down analysis and reducing ad-hoc reporting turnaround.</li>
+              <li>Authored event tracking documentation for new product features including <strong>surprise voucher flow</strong> and <strong>PUDO pick-up page</strong> optimisations, coordinating with engineering to ensure complete and accurate data instrumentation.</li>
             </ul>
           </div>
-          <div class="tl-tags">
-            <span class="tl-tag">Python</span>
-            <span class="tl-tag">NLP</span>
-            <span class="tl-tag">ETL</span>
-            <span class="tl-tag">Data Pipelines</span>
-            <span class="tl-tag">Spark</span>
+          <div class="exp-tags">
+            <span class="exp-tag">Python</span>
+            <span class="exp-tag">SQL</span>
+            <span class="exp-tag">AI Agent</span>
+            <span class="exp-tag">Data Dashboard</span>
+            <span class="exp-tag">Metric Attribution</span>
           </div>
         </div>
-      </div>
 
-      <!-- Industrial Securities -->
-      <div class="tl-item">
-        <div class="tl-date">Dec 2022 – Feb 2023</div>
-        <div class="tl-body">
-          <div class="tl-role">Derivative Trading Research Intern</div>
-          <div class="tl-company">Industrial Securities</div>
-          <div class="tl-loc"><i class="fas fa-location-dot"></i>&nbsp; Shanghai, China</div>
-          <div class="tl-desc">
+        <!-- ByteDance -->
+        <div class="exp-card">
+          <div class="exp-card-header">
+            <img class="exp-card-logo" src="bytedance.png" alt="ByteDance" />
+            <div class="exp-card-info">
+              <div class="exp-card-title">Global E-Commerce Data Science Intern</div>
+              <div class="exp-card-company"><a href="https://www.bytedance.com/" target="_blank">ByteDance</a></div>
+              <div class="exp-card-meta">
+                <span>Jan 2025 – Jul 2025</span>
+                <span>Zhuhai, China</span>
+              </div>
+            </div>
+          </div>
+          <div class="exp-desc">
             <ul>
-              <li>Developed options pricing models using Black-Scholes and Heston frameworks; backtested delta-hedging strategies on CSI 300 index options.</li>
-              <li>Conducted volatility surface construction and Greeks analysis to support trading desk decision-making.</li>
-              <li>Produced weekly research reports on equity derivatives market conditions for institutional clients.</li>
+              <li>Designed core metrics frameworks for EU/UK/Japan launch markets covering <strong>GMV attribution</strong> and real-time anomaly monitoring; standardised <strong>80%+</strong> of business intelligence dashboards.</li>
+              <li>Led cross-dimensional analysis of EU/UK market dynamics including UK GMV penetration decline and POP seller competitive impact, deploying traffic funnel and supply-side diagnostics that contributed to a <strong>15% MoM GMV recovery</strong>.</li>
+              <li>Migrated <strong>10+ critical dashboards</strong> and established daily performance monitoring protocols; authored the Japan Launch Data Operations Guide consolidating dashboard workflows and dataset specifications.</li>
             </ul>
           </div>
-          <div class="tl-tags">
-            <span class="tl-tag">Derivatives</span>
-            <span class="tl-tag">Options Pricing</span>
-            <span class="tl-tag">Python</span>
-            <span class="tl-tag">Backtesting</span>
-            <span class="tl-tag">Quantitative Finance</span>
+          <div class="exp-tags">
+            <span class="exp-tag">Python</span>
+            <span class="exp-tag">SQL</span>
+            <span class="exp-tag">GMV Analytics</span>
+            <span class="exp-tag">Data Pipeline</span>
+            <span class="exp-tag">Business Intelligence</span>
           </div>
         </div>
-      </div>
 
-      <!-- KPMG -->
-      <div class="tl-item">
-        <div class="tl-date">Jun 2022 – Aug 2022</div>
-        <div class="tl-body">
-          <div class="tl-role">Audit Intern</div>
-          <div class="tl-company">
-            <a href="https://home.kpmg/cn/en/home.html" target="_blank">KPMG</a>
+        <!-- Industrial Securities -->
+        <div class="exp-card">
+          <div class="exp-card-header">
+            <img class="exp-card-logo" src="industrial securities.jpg" alt="Industrial Securities" />
+            <div class="exp-card-info">
+              <div class="exp-card-title">Derivative Trading Research Intern</div>
+              <div class="exp-card-company">Industrial Securities</div>
+              <div class="exp-card-meta">
+                <span>Jul 2024 – Dec 2024</span>
+                <span>Shanghai, China</span>
+              </div>
+            </div>
           </div>
-          <div class="tl-loc"><i class="fas fa-location-dot"></i>&nbsp; Beijing, China</div>
-          <div class="tl-desc">
+          <div class="exp-desc">
             <ul>
-              <li>Assisted senior auditors in financial statement review and internal control testing for listed companies across the retail and technology sectors.</li>
-              <li>Prepared working papers and reconciliation schedules; identified discrepancies and escalated findings to the engagement manager.</li>
+              <li>Developed customised <strong>Black-76 models</strong> with Greek letter functions to analyse total P&amp;L of positions across varying implied volatility, expiry date and underlying asset price scenarios.</li>
+              <li>Backtested <strong>delta-hedging strategies</strong> for 50ETF options using the <strong>Zakamouline method</strong> to adjust implied volatilities (research paper in progress).</li>
+              <li>Built a <strong>VBA-based</strong> live stock position tracker to identify buy and sell signals by capturing real-time market indicators.</li>
             </ul>
           </div>
-          <div class="tl-tags">
-            <span class="tl-tag">Audit</span>
-            <span class="tl-tag">Financial Analysis</span>
-            <span class="tl-tag">Excel</span>
-            <span class="tl-tag">Internal Controls</span>
+          <div class="exp-tags">
+            <span class="exp-tag">Derivatives</span>
+            <span class="exp-tag">Options Pricing</span>
+            <span class="exp-tag">Python</span>
+            <span class="exp-tag">VBA</span>
+            <span class="exp-tag">Quantitative Finance</span>
           </div>
         </div>
-      </div>
 
-    </div><!-- /timeline -->
+        <!-- KPMG -->
+        <div class="exp-card">
+          <div class="exp-card-header">
+            <img class="exp-card-logo" src="kpmg.png" alt="KPMG" />
+            <div class="exp-card-info">
+              <div class="exp-card-title">Management Consulting Intern</div>
+              <div class="exp-card-company"><a href="https://home.kpmg/cn/en/home.html" target="_blank">KPMG Advisory (China)</a></div>
+              <div class="exp-card-meta">
+                <span>Jun 2023 – Sept 2023</span>
+                <span>Shanghai, China</span>
+              </div>
+            </div>
+          </div>
+          <div class="exp-desc">
+            <ul>
+              <li>Designed and verified the logical process of a <strong>direct-to-consumer platform</strong>, coordinating with frontend and backend engineering teams to ensure implementation accuracy.</li>
+              <li>Tested and refined website layouts and UI components to improve user shopping experience, iterating based on client feedback and usability reviews.</li>
+            </ul>
+          </div>
+          <div class="exp-tags">
+            <span class="exp-tag">Management Consulting</span>
+            <span class="exp-tag">Product Design</span>
+            <span class="exp-tag">UX</span>
+            <span class="exp-tag">Cross-functional</span>
+          </div>
+        </div>
+
+      </div><!-- /exp-cards -->
+    </div><!-- /exp-layout -->
   </div>
 </section>
 
@@ -1259,105 +1291,6 @@ window.addEventListener('scroll', () => {
   navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + cur));
 });
 
-/* ── FullCalendar + ICS sync from Outlook ── */
-const ICS_URL = 'https://outlook.office365.com/owa/calendar/23cc44178634439a98f6378410b27018@imperial.ac.uk/5199c2df17c54c69979c1aa4d3befa68587884087647201419/calendar.ics';
-
-// Manual timeout wrapper (AbortSignal.timeout not available in all browsers)
-function fetchWithTimeout(url, ms) {
-  const ctrl = new AbortController();
-  const tid  = setTimeout(() => ctrl.abort(), ms);
-  return fetch(url, { signal: ctrl.signal })
-    .finally(() => clearTimeout(tid));
-}
-
-// CORS proxies tried in order; first one to return valid ICS wins
-const PROXIES = [
-  url => `https://corsproxy.io/?url=${encodeURIComponent(url)}`,
-  url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
-  url => `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(url)}`,
-  url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
-];
-
-async function fetchICS() {
-  for (let i = 0; i < PROXIES.length; i++) {
-    const proxyUrl = PROXIES[i](ICS_URL);
-    try {
-      console.log('[Cal] Trying proxy', i + 1, ':', proxyUrl);
-      const res  = await fetchWithTimeout(proxyUrl, 12000);
-      const text = await res.text();
-      console.log('[Cal] Proxy', i + 1, 'status:', res.status, '| starts with:', text.slice(0, 80));
-      if (text.includes('BEGIN:VCALENDAR')) {
-        console.log('[Cal] ✓ Proxy', i + 1, 'returned valid ICS');
-        return text;
-      }
-    } catch (e) {
-      console.warn('[Cal] Proxy', i + 1, 'failed:', e.message);
-    }
-  }
-  console.error('[Cal] All proxies failed for URL:', ICS_URL);
-  return null;
-}
-
-function parseICS(icsText) {
-  const jcal   = ICAL.parse(icsText);
-  const comp   = new ICAL.Component(jcal);
-  const vevs   = comp.getAllSubcomponents('vevent');
-  return vevs.map(ev => {
-    const e = new ICAL.Event(ev);
-    return {
-      title:  e.summary || '(busy)',
-      start:  e.startDate.toJSDate(),
-      end:    e.endDate ? e.endDate.toJSDate() : undefined,
-      allDay: e.startDate.isDate,
-    };
-  });
-}
-
-document.addEventListener('DOMContentLoaded', async () => {
-  const calEl    = document.getElementById('calendar');
-  const errEl    = document.getElementById('cal-error');
-  const statusEl = document.getElementById('cal-status');
-
-  // Render calendar grid immediately (empty)
-  const calendar = new FullCalendar.Calendar(calEl, {
-    initialView: 'dayGridMonth',
-    headerToolbar: {
-      left:   'prev,next today',
-      center: 'title',
-      right:  'dayGridMonth,timeGridWeek,listWeek',
-    },
-    height:         660,
-    firstDay:       1,
-    eventColor:     '#1772d0',
-    eventTextColor: '#fff',
-    nowIndicator:   true,
-    editable:       false,
-    selectable:     false,
-  });
-  calendar.render();
-
-  // Load ICS in background
-  const icsText = await fetchICS();
-  if (!icsText) {
-    errEl.style.display  = 'block';
-    calEl.style.display  = 'none';
-    statusEl.innerHTML   = '<i class="fab fa-microsoft"></i> Outlook · 加载失败';
-    statusEl.style.color = '#c00';
-    statusEl.style.borderColor = '#c00';
-    return;
-  }
-
-  try {
-    const events = parseICS(icsText);
-    events.forEach(ev => calendar.addEvent(ev));
-    statusEl.innerHTML = `<i class="fab fa-microsoft"></i> Outlook · ${events.length} 个事件已同步`;
-    statusEl.classList.add('loaded');
-  } catch (e) {
-    console.error('[Cal] Parse error:', e);
-    errEl.style.display = 'block';
-    calEl.style.display = 'none';
-  }
-});
 </script>
 
 </body>
