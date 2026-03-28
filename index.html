@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yihao (Ian) Ma 马邑昊</title>
+  <title>Yihao (Ian) Ma | Quantitative Finance & Data Science</title>
+  <meta name="description" content="Yihao (Ian) Ma — MSc Risk Management & Financial Engineering at Imperial College London. Seeking roles in quantitative research, trading, and data science. Previously at TikTok UK and ByteDance." />
+  <meta property="og:title" content="Yihao (Ian) Ma | Quantitative Finance & Data Science" />
+  <meta property="og:description" content="MSc student at Imperial College London specialising in derivatives, machine learning, and systematic strategies." />
+  <meta property="og:type" content="website" />
 
   <!-- Google Fonts: Raleway (headings) + Inter (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -90,7 +94,7 @@
     /* ══════════════════════
        PAGE / SECTION
        ══════════════════════ */
-    #about { padding: calc(var(--nav-h) + 52px) 0 80px; }
+    #about { padding: calc(var(--nav-h) + 52px) 0 40px; }
 
     .container {
       max-width: var(--max);
@@ -199,17 +203,16 @@
       font-size: 1rem;
       line-height: 1.85;
       color: var(--text);
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
     }
 
-    /* Interests + Education */
+    /* Interests + Education two columns */
     .bio-two-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1rem 3rem;
       margin-top: 2rem;
     }
-
     .bio-subcol-title {
       font-family: 'Raleway', sans-serif;
       font-size: 1.2rem;
@@ -217,8 +220,6 @@
       color: var(--dark);
       margin-bottom: 1rem;
     }
-
-    /* Interest list — each item gets a DIFFERENT icon (dark, not blue) */
     .int-list { list-style: none; }
     .int-list li {
       display: flex;
@@ -229,15 +230,13 @@
       color: var(--text);
     }
     .int-list li i {
-      color: #555;       /* dark gray icons, like on Xinjie's site */
+      color: #555;
       margin-top: .28rem;
       font-size: .95rem;
       flex-shrink: 0;
       width: 1.1rem;
       text-align: center;
     }
-
-    /* Education list */
     .edu-list { list-style: none; }
     .edu-list li {
       display: flex;
@@ -264,12 +263,41 @@
     }
 
     /* ══════════════════════
+       DARK MODE
+       ══════════════════════ */
+    [data-theme="dark"] {
+      --text:   #d0d0d0;
+      --muted:  #888;
+      --dark:   #f0f0f0;
+      --border: #2a2a2a;
+    }
+    [data-theme="dark"] body { background: #141414; }
+    [data-theme="dark"] #navbar { background: #1a1a1a; }
+    [data-theme="dark"] .nav-links.open { background: #1a1a1a; }
+    [data-theme="dark"] .exp-card,
+    [data-theme="dark"] .proj-card,
+    [data-theme="dark"] .contact-card { background: #1e1e1e; }
+    [data-theme="dark"] .proj-card { border-color: #2a2a2a; }
+    [data-theme="dark"] .exp-card { border-color: #2a2a2a; }
+    [data-theme="dark"] .proj-modal { background: #1e1e1e; }
+    [data-theme="dark"] .proj-modal-header { border-bottom-color: #2a2a2a; }
+    [data-theme="dark"] .proj-modal-preview { background: #2a2a2a; border-color: #333; }
+    [data-theme="dark"] #projects { background: #111; }
+    [data-theme="dark"] #contact  { background: #111; }
+    [data-theme="dark"] .exp-tag  { background: #1a2840; }
+    [data-theme="dark"] .proj-tag { background: #1a2840; }
+    [data-theme="dark"] .aw-year  { background: #1a2840; }
+    [data-theme="dark"] .cal-wrap { background: #1e1e1e; border-color: #2a2a2a; }
+    [data-theme="dark"] .portrait-photo { border-color: #444; }
+    [data-theme="dark"] footer { border-top-color: #2a2a2a; }
+
+    /* ══════════════════════
        FOOTER
        ══════════════════════ */
     /* ══════════════════════
        SCHEDULE SECTION
        ══════════════════════ */
-    #schedule { padding: 72px 0 80px; background: #fff; }
+    #schedule { padding: 40px 0 80px; background: #fff; }
 
     .schedule-heading {
       font-family: 'Raleway', sans-serif;
@@ -543,140 +571,195 @@
        ══════════════════════ */
     #awards { padding: 72px 0 80px; background: #fff; }
 
-    .awards-list { list-style: none; }
-    .award-item {
+    /* ── Timeline ── */
+    .awards-timeline {
+      position: relative;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .awards-timeline::before {
+      content: '';
+      position: absolute;
+      left: 29px;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+
+    .aw-item {
+      position: relative;
       display: flex;
       align-items: flex-start;
-      gap: 1.2rem;
-      padding: 1.2rem 0;
-      border-bottom: 1px solid var(--border);
+      gap: 1.4rem;
+      padding: .9rem 0 .9rem 0;
+      cursor: default;
     }
-    .award-item:last-child { border-bottom: none; }
+    .aw-item + .aw-item { border-top: 1px solid var(--border); }
 
-    .award-icon {
-      width: 44px; height: 44px;
+    /* logo circle on the timeline */
+    .aw-dot {
+      position: relative;
+      width: 58px; height: 58px;
       border-radius: 50%;
-      background: #fff7e0;
-      border: 1.5px solid #f6c800;
-      display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
-      font-size: 1.2rem; color: #d4a017;
+      background: #fff;
+      border: 2px solid var(--border);
+      overflow: hidden;
+      z-index: 1;
+      transition: border-color .2s, box-shadow .2s;
     }
-    .award-body {}
-    .award-title {
+    .aw-dot img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* emoji fallback — child span inside .aw-dot */
+    .aw-dot-inner {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.45rem;
+      line-height: 1;
+    }
+    .aw-item:hover .aw-dot {
+      border-color: var(--link);
+      box-shadow: 0 0 0 4px rgba(23,114,208,.1);
+    }
+
+    /* text block */
+    .aw-body { flex: 1; padding-top: .25rem; }
+
+    .aw-row {
+      display: flex;
+      align-items: baseline;
+      gap: .7rem;
+      flex-wrap: wrap;
+    }
+    .aw-title {
       font-family: 'Raleway', sans-serif;
-      font-size: 1.05rem;
+      font-size: 1rem;
       font-weight: 700;
       color: var(--dark);
-      margin-bottom: .15rem;
-      line-height: 1.3;
+      transition: color .2s;
     }
-    .award-org {
-      font-size: .88rem;
-      color: var(--muted);
-    }
-    .award-year {
-      font-size: .78rem;
-      color: var(--link);
+    .aw-item:hover .aw-title { color: var(--link); }
+
+    .aw-year {
+      font-size: .75rem;
       font-weight: 600;
+      color: var(--link);
+      background: #eef4ff;
+      padding: .05rem .45rem;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .aw-org {
+      font-size: .83rem;
+      color: var(--muted);
       margin-top: .18rem;
     }
+
+    /* hover-reveal note */
+    .aw-note {
+      font-size: .82rem;
+      color: #666;
+      margin-top: .35rem;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height .3s ease, opacity .25s ease, margin-top .2s;
+    }
+    .aw-item:hover .aw-note {
+      max-height: 80px;
+      opacity: 1;
+      margin-top: .4rem;
+    }
+
+    .aw-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      font-size: .78rem;
+      font-weight: 600;
+      color: var(--link);
+      margin-top: .3rem;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity .25s ease .05s, max-height .3s ease;
+    }
+    .aw-item:hover .aw-link {
+      opacity: 1;
+      max-height: 40px;
+    }
+    .aw-link:hover { color: var(--link-h); text-decoration: underline; }
 
     /* ══════════════════════
        CONTACT SECTION
        ══════════════════════ */
     #contact { padding: 72px 0 80px; background: #f9f9f9; }
 
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: flex-start;
-    }
-
     .contact-intro {
-      font-size: 1rem;
-      color: var(--text);
-      line-height: 1.8;
-      margin-bottom: 2rem;
+      text-align: center;
+      font-size: .97rem;
+      color: var(--muted);
+      margin-bottom: 2.4rem;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    .contact-items { list-style: none; }
-    .contact-item {
+    .contact-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .contact-card {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      margin-bottom: 1.1rem;
+      gap: .9rem;
+      padding: 1rem 1.4rem;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--text);
+      transition: box-shadow .2s, transform .2s, border-color .2s;
+      min-width: 210px;
     }
-    .contact-item-icon {
+    .contact-card:hover {
+      box-shadow: 0 4px 18px rgba(0,0,0,.08);
+      transform: translateY(-2px);
+      border-color: var(--link);
+      text-decoration: none;
+      color: var(--text);
+    }
+    .contact-card-icon {
       width: 42px; height: 42px;
       border-radius: 50%;
       background: #eef4ff;
       display: flex; align-items: center; justify-content: center;
       color: var(--link);
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       flex-shrink: 0;
     }
-    .contact-item-text {}
-    .contact-item-label {
-      font-size: .78rem;
-      color: var(--muted);
+    .contact-card-label {
+      font-size: .72rem;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .05em;
-      margin-bottom: .05rem;
+      color: var(--muted);
+      margin-bottom: .1rem;
     }
-    .contact-item-value {
-      font-size: .95rem;
-      color: var(--text);
-      font-weight: 500;
-    }
-    .contact-item-value a { color: var(--link); }
-    .contact-item-value a:hover { color: var(--link-h); }
-
-    /* Simple contact form */
-    .contact-form {}
-    .form-group { margin-bottom: 1.1rem; }
-    .form-group label {
-      display: block;
-      font-size: .82rem;
+    .contact-card-value {
+      font-size: .9rem;
       font-weight: 600;
-      color: var(--dark);
-      margin-bottom: .35rem;
-      text-transform: uppercase;
-      letter-spacing: .04em;
+      color: var(--link);
     }
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      padding: .7rem .9rem;
-      border: 1.5px solid var(--border);
-      border-radius: 5px;
-      font-family: 'Inter', sans-serif;
-      font-size: .93rem;
-      color: var(--text);
-      background: #fff;
-      outline: none;
-      transition: border-color .15s;
-      resize: vertical;
-    }
-    .form-group input:focus,
-    .form-group textarea:focus { border-color: var(--link); }
-    .form-group textarea { min-height: 120px; }
-
-    .form-submit {
-      display: inline-flex; align-items: center; gap: .5rem;
-      padding: .65rem 1.8rem;
-      background: var(--link);
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      font-family: 'Raleway', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background .15s;
-    }
-    .form-submit:hover { background: var(--link-h); }
 
     @media (max-width: 760px) {
       .tl-item { grid-template-columns: 1fr; }
@@ -716,6 +799,135 @@
         padding: .5rem 0; box-shadow: 0 4px 10px rgba(0,0,0,.06);
       }
     }
+
+    /* ══════════════════════
+       PROJECT MODAL
+       ══════════════════════ */
+    .proj-card.clickable { cursor: pointer; }
+    .proj-card.clickable .proj-title {
+      color: var(--link);
+      transition: color .15s;
+    }
+    .proj-card.clickable:hover .proj-title { color: var(--link-h); }
+
+    .proj-modal-overlay {
+      display: none;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.55);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .proj-modal-overlay.open { display: flex; }
+
+    .proj-modal {
+      background: #fff;
+      border-radius: 12px;
+      max-width: 860px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+      animation: modalIn .22s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(18px) scale(.97); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .proj-modal-header {
+      position: relative;
+      padding: 1.6rem 2rem 1.2rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .proj-modal-header h3 {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: .25rem;
+    }
+    .proj-modal-header .proj-modal-sub {
+      font-size: .85rem;
+      color: var(--muted);
+    }
+    .proj-modal-close {
+      position: absolute; top: 1.2rem; right: 1.4rem;
+      background: none; border: none;
+      font-size: 1.5rem; color: var(--muted);
+      cursor: pointer; line-height: 1;
+      transition: color .15s;
+    }
+    .proj-modal-close:hover { color: var(--dark); }
+
+    .proj-modal-body { padding: 1.8rem 2rem; }
+
+    .proj-modal-preview {
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 1.6rem;
+      border: 1px solid var(--border);
+      text-align: center;
+      background: #f5f5f5;
+    }
+    .proj-modal-preview img {
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+      cursor: pointer;
+    }
+    .proj-modal-preview .preview-caption {
+      font-size: .78rem;
+      color: var(--muted);
+      padding: .5rem 0 .7rem;
+    }
+
+    .proj-modal-section-title {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      margin: 1.4rem 0 .6rem;
+    }
+    .proj-modal-body p {
+      font-size: .93rem;
+      line-height: 1.8;
+      color: var(--text);
+      margin-bottom: .8rem;
+    }
+    .proj-modal-body .proj-tags { margin-bottom: 1rem; }
+
+    .proj-modal-actions {
+      margin-top: 1.6rem;
+      display: flex; gap: .8rem; flex-wrap: wrap;
+    }
+    .proj-modal-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      padding: .55rem 1.3rem;
+      border-radius: 5px;
+      font-size: .88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s, color .15s;
+      text-decoration: none;
+    }
+    .proj-modal-btn.primary {
+      background: var(--link); color: #fff; border: none;
+    }
+    .proj-modal-btn.primary:hover { background: var(--link-h); text-decoration: none; }
+    .proj-modal-btn.outline {
+      background: #fff; color: var(--link);
+      border: 1.5px solid var(--link);
+    }
+    .proj-modal-btn.outline:hover { background: #eef4ff; text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .proj-modal-header, .proj-modal-body { padding-left: 1.2rem; padding-right: 1.2rem; }
+    }
   </style>
 </head>
 <body>
@@ -743,10 +955,7 @@
     </ul>
 
     <div class="nav-icons">
-      <button class="nav-icon-btn" title="Search" aria-label="Search">
-        <i class="fas fa-search"></i>
-      </button>
-      <button class="nav-icon-btn" title="Toggle dark mode" aria-label="Dark mode">
+      <button class="nav-icon-btn" id="themeToggle" title="Toggle dark mode" aria-label="Dark mode">
         <i class="fas fa-moon"></i>
       </button>
     </div>
@@ -811,26 +1020,16 @@
             <strong>Risk Management &amp; Financial Engineering</strong> at
             <a href="https://www.imperial.ac.uk/business-school/masters/risk-management/" target="_blank">Imperial College London</a>.
             My interests sit at the intersection of <strong>quantitative finance</strong> and
-            <strong>data science</strong>, with a focus on how market microstructure,
-            derivatives, and machine learning can be combined to understand and navigate
-            real-world market dynamics.
+            <strong>data science</strong>, with a focus on derivatives, machine learning, and
+            how they can be combined to understand real-world market dynamics.
           </p>
 
           <p class="bio-para">
-            I interned as a Data Science Intern at <strong>TikTok UK / ByteDance</strong>,
-            conducting metric attribution analysis and user retention strategy research, and
-            as a Derivative Trading Research Intern at <strong>Industrial Securities</strong>,
-            developing options pricing models and backtesting delta-hedging strategies. I am a
-            <strong>2025 CFA Research Challenge Local Final Champion</strong> and a member of
-            the Quantitative Engineering team at the <strong>Imperial Student Investment Fund</strong>.
-          </p>
-
-          <p class="bio-para">
-            Outside of finance, I enjoy building AI tools and side projects, photography
-            and travel, and staying active through cycling and tennis. I am actively seeking
-            opportunities in quantitative finance and data science — please feel free to
-            reach out via <a href="mailto:ianyihaoma@163.com">email</a> or
-            <a href="https://www.linkedin.com/in/yihao-ma-9297a42b6/" target="_blank">LinkedIn</a>.
+            What excites me most is turning messy, real-world data into something that actually
+            works — a model that prices risk properly, a signal that holds up out-of-sample, a
+            strategy grounded in both theory and market intuition. I am actively seeking roles
+            in <strong>quantitative research</strong>, <strong>trading</strong>, or
+            <strong>data science</strong> where I can keep pushing at that boundary.
           </p>
 
           <!-- Interests + Education two columns -->
@@ -839,26 +1038,10 @@
             <div>
               <div class="bio-subcol-title">Interests</div>
               <ul class="int-list">
-                <li>
-                  <i class="fas fa-chart-line"></i>
-                  Quantitative Finance &amp; Derivatives
-                </li>
-                <li>
-                  <i class="fas fa-brain"></i>
-                  Machine Learning in Finance
-                </li>
-                <li>
-                  <i class="fas fa-robot"></i>
-                  Building AI Tools &amp; Side Projects
-                </li>
-                <li>
-                  <i class="fas fa-camera"></i>
-                  Photography &amp; Travel
-                </li>
-                <li>
-                  <i class="fas fa-person-biking"></i>
-                  Cycling &amp; Tennis
-                </li>
+                <li><i class="fas fa-chart-line"></i> Quantitative Finance &amp; Derivatives</li>
+                <li><i class="fas fa-brain"></i> Machine Learning in Finance</li>
+                <li><i class="fas fa-robot"></i> Building AI Tools &amp; Side Projects</li>
+                <li><i class="fas fa-camera"></i> Photography &amp; Travel</li>
               </ul>
             </div>
 
@@ -868,14 +1051,14 @@
                 <li>
                   <i class="fas fa-graduation-cap"></i>
                   <div>
-                    <div class="edu-degree">MSc Risk Mgmt &amp; Financial Engineering, 25.08 – 26.08</div>
+                    <div class="edu-degree">MSc Risk Mgmt &amp; Financial Engineering, 2025–2026</div>
                     <div class="edu-school">Imperial College London</div>
                   </div>
                 </li>
                 <li>
                   <i class="fas fa-graduation-cap"></i>
                   <div>
-                    <div class="edu-degree">BBA Finance (First Class), 21.09 – 25.06</div>
+                    <div class="edu-degree">BBA Finance (First Class), 2021–2025</div>
                     <div class="edu-school">Beijing Normal Hong Kong Baptist University</div>
                   </div>
                 </li>
@@ -896,7 +1079,7 @@
   <div class="container">
     <h2 class="schedule-heading">Schedule</h2>
     <p class="schedule-subtext">
-      View my availability — synced live from Outlook (Imperial College London).
+      Scheduling a call or interview? View my live availability below and feel free to reach out for a time that works.
     </p>
 
     <div class="cal-sources">
@@ -1058,80 +1241,94 @@
 
     <div class="proj-grid">
 
-      <!-- Project 1 -->
-      <div class="proj-card">
-        <div class="proj-img"><i class="fas fa-chart-line"></i></div>
-        <div class="proj-body">
-          <div class="proj-title">Volatility Surface Construction &amp; Options Pricing</div>
-          <div class="proj-meta">Quantitative Finance · 2023</div>
-          <div class="proj-desc">
-            Built an end-to-end pipeline to construct implied volatility surfaces from market quotes for CSI 300 index options. Implemented local volatility (Dupire) and Heston stochastic volatility models, and compared pricing accuracy against the Black-Scholes benchmark.
-          </div>
-          <div class="proj-tags">
-            <span class="proj-tag">Python</span>
-            <span class="proj-tag">QuantLib</span>
-            <span class="proj-tag">Scipy</span>
-            <span class="proj-tag">Options</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 2 -->
-      <div class="proj-card">
-        <div class="proj-img" style="background: linear-gradient(135deg, #00875a 0%, #006644 100%);">
-          <i class="fas fa-brain"></i>
+      <!-- FPIA Portfolio Construction — clickable card -->
+      <div class="proj-card clickable" onclick="document.getElementById('fpiaModal').classList.add('open')">
+        <div class="proj-img" style="padding:0; height:200px; background:#fff; border-bottom:1px solid var(--border);">
+          <img src="FPIA intro.jpeg" alt="FPIA Portfolio Construction Preview"
+               style="width:100%; height:100%; object-fit:cover; display:block;" />
         </div>
         <div class="proj-body">
-          <div class="proj-title">ML-Driven Alpha Factor Research</div>
-          <div class="proj-meta">Machine Learning · 2024</div>
+          <div class="proj-title" style="font-size:1.15rem;">
+            Portfolio Construction &amp; Factor Investing — FPIA
+                      </div>
+          <div class="proj-meta">Portfolio Management · Factor Investing · 2024–2025</div>
           <div class="proj-desc">
-            Designed and backtested a systematic alpha factor library using gradient boosting (XGBoost, LightGBM) on A-share market data. Achieved statistically significant IC scores through rigorous walk-forward validation and transaction-cost-aware portfolio construction.
+            A comprehensive portfolio construction study examining systematic factor strategies, risk-parity allocation, and multi-asset optimisation — submitted as the final project for FPIA.
           </div>
           <div class="proj-tags">
-            <span class="proj-tag">XGBoost</span>
-            <span class="proj-tag">LightGBM</span>
-            <span class="proj-tag">Backtesting</span>
+            <span class="proj-tag">Portfolio Construction</span>
             <span class="proj-tag">Factor Investing</span>
+            <span class="proj-tag">Risk Parity</span>
+            <span class="proj-tag">Asset Allocation</span>
           </div>
         </div>
       </div>
 
-      <!-- Project 3 -->
-      <div class="proj-card">
-        <div class="proj-img" style="background: linear-gradient(135deg, #744fc6 0%, #4a2d8a 100%);">
-          <i class="fas fa-shield-halved"></i>
+      <!-- BYD / CFA Research Challenge — clickable card -->
+      <div class="proj-card clickable" onclick="document.getElementById('bydModal').classList.add('open')">
+        <div class="proj-img" style="padding:0; height:200px; background:#fff; border-bottom:1px solid var(--border);">
+          <img src="BYD report.jpeg" alt="BYD CFA Research Challenge Cover"
+               style="width:100%; height:100%; object-fit:cover; display:block;" />
         </div>
         <div class="proj-body">
-          <div class="proj-title">Credit Risk Modelling — PD Estimation</div>
-          <div class="proj-meta">Risk Management · 2025</div>
+          <div class="proj-title" style="font-size:1.15rem;">
+            Build Our Dream — BYD Equity Research Report
+                      </div>
+          <div class="proj-meta">CFA Research Challenge · Equity Research · 2024–2025</div>
           <div class="proj-desc">
-            Developed a Probability of Default (PD) model for a corporate loan portfolio using logistic regression and survival analysis. Calibrated the model against through-the-cycle (TTC) benchmarks and stress-tested under adverse macroeconomic scenarios.
+            Award-winning equity research report on BYD Co. Ltd, produced for the CFA Research Challenge UK Local Final. Covers fundamental valuation, competitive positioning, and investment thesis for one of the world's leading EV manufacturers.
           </div>
           <div class="proj-tags">
-            <span class="proj-tag">Credit Risk</span>
-            <span class="proj-tag">Survival Analysis</span>
+            <span class="proj-tag">Equity Research</span>
+            <span class="proj-tag">DCF Valuation</span>
+            <span class="proj-tag">EV Industry</span>
+            <span class="proj-tag">CFA Challenge</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 50ETF Options Strategy — clickable card -->
+      <div class="proj-card clickable" onclick="document.getElementById('etfModal').classList.add('open')">
+        <div class="proj-img" style="padding:0; height:200px; background:#0a1628; border-bottom:1px solid var(--border);">
+          <img src="50ETF cover.jpeg" alt="50ETF Options Strategy Cover"
+               style="width:100%; height:100%; object-fit:cover; display:block;" />
+        </div>
+        <div class="proj-body">
+          <div class="proj-title" style="font-size:1.15rem;">
+            50ETF Options Strategy Backtesting &amp; Construction
+                      </div>
+          <div class="proj-meta">Quantitative Finance · Options · Python · 2016–2024</div>
+          <div class="proj-desc">
+            A systematic options trading strategy on CSI 50ETF using delta-hedged long/short positions across near, mid, and far-term contracts — validated through full backtesting and live portfolio simulation.
+          </div>
+          <div class="proj-tags">
+            <span class="proj-tag">Options Strategy</span>
+            <span class="proj-tag">Delta Hedging</span>
+            <span class="proj-tag">Backtesting</span>
             <span class="proj-tag">Python</span>
-            <span class="proj-tag">Statsmodels</span>
           </div>
         </div>
       </div>
 
-      <!-- Project 4 -->
-      <div class="proj-card">
-        <div class="proj-img" style="background: linear-gradient(135deg, #e05a00 0%, #a03600 100%);">
-          <i class="fas fa-database"></i>
+      <!-- Blockchain Publication — clickable card -->
+      <div class="proj-card clickable" onclick="document.getElementById('blockchainModal').classList.add('open')">
+        <div class="proj-img" style="padding:0; height:200px; background:#fff; border-bottom:1px solid var(--border);">
+          <img src="blockchain.jpeg" alt="Blockchain Publication Cover"
+               style="width:100%; height:100%; object-fit:cover; display:block;" />
         </div>
         <div class="proj-body">
-          <div class="proj-title">NLP Sentiment Analysis for Market Signals</div>
-          <div class="proj-meta">NLP · Data Science · 2023</div>
+          <div class="proj-title" style="font-size:1.15rem;">
+            Blockchain in Value Chain &amp; Supply Chain — Published Chapter
+                      </div>
+          <div class="proj-meta">Academic Publication · IGI Global · 2023</div>
           <div class="proj-desc">
-            Fine-tuned a FinBERT model on Chinese financial news to generate daily sentiment scores for A-share listed companies. Integrated sentiment signals with technical factors in a long-short portfolio and demonstrated improved Sharpe ratio versus a pure factor baseline.
+            A published book chapter examining four Chinese firms — Hyperchain, Huawei, JD.com, and SF Express — and how they leverage blockchain to strengthen value chains and supply chains.
           </div>
           <div class="proj-tags">
-            <span class="proj-tag">FinBERT</span>
-            <span class="proj-tag">NLP</span>
-            <span class="proj-tag">PyTorch</span>
-            <span class="proj-tag">Sentiment</span>
+            <span class="proj-tag">Published</span>
+            <span class="proj-tag">Blockchain</span>
+            <span class="proj-tag">Supply Chain</span>
+            <span class="proj-tag">Case Study</span>
           </div>
         </div>
       </div>
@@ -1139,6 +1336,217 @@
     </div><!-- /proj-grid -->
   </div>
 </section>
+
+<!-- ══════════════════════════════════════
+     FPIA PROJECT MODAL
+     ══════════════════════════════════════ -->
+<div class="proj-modal-overlay" id="fpiaModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="proj-modal" role="dialog" aria-modal="true" aria-labelledby="fpiaModalTitle">
+
+    <div class="proj-modal-header">
+      <h3 id="fpiaModalTitle">Portfolio Construction &amp; Factor Investing — FPIA Final Report</h3>
+      <div class="proj-modal-sub">Portfolio Management · Factor Investing · 2024–2025</div>
+      <button class="proj-modal-close" onclick="document.getElementById('fpiaModal').classList.remove('open')" aria-label="Close">×</button>
+    </div>
+
+    <div class="proj-modal-body">
+
+      <!-- Cover preview -->
+      <div class="proj-modal-preview">
+        <img src="FPIA intro.jpeg" alt="FPIA Report Cover"
+             onclick="window.open('FPIA Final Vison.pdf','_blank')"
+             title="Click to open full PDF" />
+        <div class="preview-caption">Cover page · Click image to open full PDF</div>
+      </div>
+
+      <div class="proj-modal-section-title">Overview</div>
+      <p>
+        This report was produced as the final deliverable for the FPIA (Financial Portfolio &amp; Investment Analysis) programme. It presents a systematic, research-driven approach to multi-asset portfolio construction, combining quantitative factor strategies with modern risk management frameworks.
+      </p>
+      <p>
+        The work covers the full investment process — from universe screening and factor signal generation, through portfolio optimisation and risk budgeting, to performance attribution and stress testing — grounded in both academic literature and practical implementation considerations.
+      </p>
+
+      <div class="proj-modal-section-title">Key Topics</div>
+      <p>
+        The report examines equity factor premia (value, momentum, quality, low-volatility), risk-parity and mean–variance optimisation, drawdown control, and multi-asset diversification across equities, fixed income, and alternatives. Transaction-cost-aware backtesting and walk-forward validation are used throughout to ensure robustness.
+      </p>
+
+      <div class="proj-modal-section-title">Methods &amp; Tools</div>
+      <div class="proj-tags" style="margin-bottom:1rem;">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">Portfolio Optimisation</span>
+        <span class="proj-tag">Factor Investing</span>
+        <span class="proj-tag">Risk Parity</span>
+        <span class="proj-tag">Asset Allocation</span>
+        <span class="proj-tag">Backtesting</span>
+        <span class="proj-tag">Performance Attribution</span>
+      </div>
+
+      <div class="proj-modal-actions">
+        <a class="proj-modal-btn primary" href="FPIA Final Vison.pdf" target="_blank">
+          <i class="fas fa-file-pdf"></i> View Full PDF
+        </a>
+      </div>
+
+    </div><!-- /proj-modal-body -->
+  </div><!-- /proj-modal -->
+</div><!-- /overlay -->
+
+<!-- ══════════════════════════════════════
+     BYD / CFA RESEARCH CHALLENGE MODAL
+     ══════════════════════════════════════ -->
+<div class="proj-modal-overlay" id="bydModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="proj-modal" role="dialog" aria-modal="true" aria-labelledby="bydModalTitle">
+
+    <div class="proj-modal-header">
+      <h3 id="bydModalTitle">Build Our Dream — BYD Co. Ltd Equity Research Report</h3>
+      <div class="proj-modal-sub">CFA Research Challenge · UK Local Final Champion · 2024–2025</div>
+      <button class="proj-modal-close" onclick="document.getElementById('bydModal').classList.remove('open')" aria-label="Close">×</button>
+    </div>
+
+    <div class="proj-modal-body">
+
+      <!-- Cover preview -->
+      <div class="proj-modal-preview">
+        <img src="BYD report.jpeg" alt="BYD Report Cover"
+             onclick="window.open('Build Our Dream_比亚迪股份有限公司.pdf','_blank')"
+             title="Click to open full PDF" />
+        <div class="preview-caption">Cover page · Click image to open full PDF</div>
+      </div>
+
+      <div class="proj-modal-section-title">Overview</div>
+      <p>
+        This equity research report on BYD Co. Ltd was produced for the CFA Research Challenge, where it helped the team win the UK Local Final Championship. The report delivers a comprehensive buy-side analysis of one of the world's largest electric vehicle and battery manufacturers, evaluating its long-term investment merits with rigorous financial modelling and industry research.
+      </p>
+      <p>
+        BYD's vertically integrated model — spanning battery cells, EV platforms, and semiconductors — is analysed against the rapidly evolving global EV landscape, with particular attention to its competitive moat in China and expanding international footprint.
+      </p>
+
+      <div class="proj-modal-section-title">Key Analysis</div>
+      <p>
+        The report includes a detailed three-statement financial model, DCF and comparable company valuation, SWOT and Porter's Five Forces analysis, scenario-based sensitivity testing, and an ESG assessment. The investment thesis centres on BYD's structural cost advantages, battery technology leadership, and multi-segment diversification across passenger EVs, commercial vehicles, and energy storage.
+      </p>
+
+      <div class="proj-modal-section-title">Methods &amp; Tools</div>
+      <div class="proj-tags" style="margin-bottom:1rem;">
+        <span class="proj-tag">DCF Valuation</span>
+        <span class="proj-tag">Comparable Analysis</span>
+        <span class="proj-tag">Equity Research</span>
+        <span class="proj-tag">Financial Modelling</span>
+        <span class="proj-tag">EV Industry</span>
+        <span class="proj-tag">ESG Analysis</span>
+        <span class="proj-tag">Scenario Analysis</span>
+      </div>
+
+      <div class="proj-modal-actions">
+        <a class="proj-modal-btn primary" href="Build Our Dream_比亚迪股份有限公司.pdf" target="_blank">
+          <i class="fas fa-file-pdf"></i> View Full PDF
+        </a>
+      </div>
+
+    </div><!-- /proj-modal-body -->
+  </div><!-- /proj-modal -->
+</div><!-- /overlay -->
+
+<!-- ══════════════════════════════════════
+     50ETF OPTIONS STRATEGY MODAL
+     ══════════════════════════════════════ -->
+<div class="proj-modal-overlay" id="etfModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="proj-modal" role="dialog" aria-modal="true" aria-labelledby="etfModalTitle">
+
+    <div class="proj-modal-header">
+      <h3 id="etfModalTitle">50ETF Options Strategy Backtesting &amp; Construction</h3>
+      <div class="proj-modal-sub">Quantitative Finance · Options · Delta Hedging · 2016–2024</div>
+      <button class="proj-modal-close" onclick="document.getElementById('etfModal').classList.remove('open')" aria-label="Close">×</button>
+    </div>
+
+    <div class="proj-modal-body">
+
+      <!-- Cover preview -->
+      <div class="proj-modal-preview" style="background:#0a1628;">
+        <img src="50ETF cover.jpeg" alt="50ETF Strategy Cover" style="max-height:320px;" />
+        <div class="preview-caption">Strategy overview — cumulative hedged P&amp;L (2016–2024)</div>
+      </div>
+
+      <div class="proj-modal-section-title">Overview</div>
+      <p>
+        This project constructs and validates a systematic options trading strategy using the CSI 50ETF as the underlying asset. The core thesis: go long on Call ITM and Put OTM options (positive expected P&amp;L from hedging), while shorting Call OTM and Put ITM options — all delta-hedged via a synthetic futures position.
+      </p>
+      <p>
+        The strategy is first validated through a full market backtest covering all contracts from 2016 to 2024, then refined into a realistic portfolio simulation that selects only the nearest at-the-money contracts across near, mid, and far expiry buckets.
+      </p>
+
+      <div class="proj-modal-section-title">Methodology</div>
+      <p>
+        Daily P&amp;L is computed as <em>PnL = V<sub>t</sub> − V<sub>t−1</sub> − (S<sub>t</sub> − S<sub>t−1</sub>) × Δ<sub>t−1</sub></em>, where the synthetic futures price is derived from put-call parity (S = K + P − C). Contracts are classified by moneyness (ITM/OTM) and expiry type (near / mid / far term), with cumulative P&amp;L tracked across all six groups. The portfolio simulation replicates real holding conditions: 3 contracts per type per expiry bucket, rolled at 14:55 daily close.
+      </p>
+      <p>
+        Stress-period analysis (e.g. the Feb 2019 spike) decomposes intraday Gamma, Vega, and Delta exposures to explain tail behaviour and validate the hedge's robustness under extreme market moves.
+      </p>
+
+      <div class="proj-modal-section-title">Key Findings</div>
+      <p>
+        Far-term contracts consistently outperform near-term across both long and short legs. The live portfolio simulation shows smoother P&amp;L than the raw backtest, confirming that ATM synthetic hedging is more precise than aggregated all-contract hedging. The strategy demonstrates positive risk-adjusted returns over the full 8-year sample.
+      </p>
+
+      <div class="proj-modal-section-title">Methods &amp; Tools</div>
+      <div class="proj-tags" style="margin-bottom:1rem;">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">Pandas</span>
+        <span class="proj-tag">Options Pricing</span>
+        <span class="proj-tag">Delta Hedging</span>
+        <span class="proj-tag">Backtesting</span>
+        <span class="proj-tag">Synthetic Futures</span>
+        <span class="proj-tag">Greeks Analysis</span>
+      </div>
+
+    </div><!-- /proj-modal-body -->
+  </div><!-- /proj-modal -->
+</div><!-- /overlay -->
+
+<!-- ══════════════════════════════════════
+     BLOCKCHAIN PUBLICATION MODAL
+     ══════════════════════════════════════ -->
+<div class="proj-modal-overlay" id="blockchainModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="proj-modal" role="dialog" aria-modal="true" aria-labelledby="blockchainModalTitle">
+
+    <div class="proj-modal-header">
+      <h3 id="blockchainModalTitle">Leveraging Blockchain Technology in the Value Chain &amp; Supply Chain</h3>
+      <div class="proj-modal-sub">Published Chapter · IGI Global · 2023 · Cases on Chinese Firms</div>
+      <button class="proj-modal-close" onclick="document.getElementById('blockchainModal').classList.remove('open')" aria-label="Close">×</button>
+    </div>
+
+    <div class="proj-modal-body">
+
+      <div class="proj-modal-preview" style="background:#f5f5f5;">
+        <img src="blockchain.jpeg" alt="Blockchain Chapter Cover"
+             onclick="window.open('blockchain.pdf','_blank')"
+             title="Click to open full PDF" style="max-height:320px; object-fit:contain;" />
+        <div class="preview-caption">Click image to open full PDF</div>
+      </div>
+
+      <div class="proj-modal-section-title">Overview</div>
+      <p>
+        Published book chapter (IGI Global, 2023) examining how four Chinese firms — <strong>Hyperchain</strong>, <strong>Huawei</strong>, <strong>JD.com</strong>, and <strong>SF Express</strong> — leverage blockchain to strengthen value chains and supply chains.
+      </p>
+
+      <div class="proj-tags" style="margin: 1rem 0;">
+        <span class="proj-tag">IGI Global · 2023</span>
+        <span class="proj-tag">Blockchain</span>
+        <span class="proj-tag">Supply Chain</span>
+        <span class="proj-tag">Case Study</span>
+      </div>
+
+      <div class="proj-modal-actions">
+        <a class="proj-modal-btn primary" href="blockchain.pdf" target="_blank">
+          <i class="fas fa-file-pdf"></i> View Full Chapter
+        </a>
+      </div>
+
+    </div><!-- /proj-modal-body -->
+  </div><!-- /proj-modal -->
+</div><!-- /overlay -->
 
 
 <!-- ══════════════════════════════════════
@@ -1148,45 +1556,73 @@
   <div class="container">
     <h2 class="section-heading">Awards &amp; Honors</h2>
 
-    <ul class="awards-list">
+    <div class="awards-timeline">
 
-      <li class="award-item">
-        <div class="award-icon"><i class="fas fa-trophy"></i></div>
-        <div class="award-body">
-          <div class="award-title">CFA Research Challenge — Local Final Champion</div>
-          <div class="award-org">CFA Society United Kingdom</div>
-          <div class="award-year">2025</div>
+      <!-- CFA Research Challenge -->
+      <div class="aw-item">
+        <div class="aw-dot">
+          <img src="cfa shenzhen.png" alt="CFA" />
         </div>
-      </li>
-
-      <li class="award-item">
-        <div class="award-icon"><i class="fas fa-medal"></i></div>
-        <div class="award-body">
-          <div class="award-title">National Grand Prize — CMAU Market Research Competition</div>
-          <div class="award-org">China Market Research Association (CMAU)</div>
-          <div class="award-year">2024</div>
+        <div class="aw-body">
+          <div class="aw-row">
+            <div class="aw-title">UK Local Final Champion — CFA Research Challenge</div>
+            <span class="aw-year">2025</span>
+          </div>
+          <div class="aw-org">CFA Society United Kingdom</div>
+          <div class="aw-note">Led the team's equity research on BYD Co. Ltd, winning the UK local final against teams from leading universities.</div>
+          <a class="aw-link" href="https://fbm.bnbu.edu.cn/info/1146/4954.htm" target="_blank">
+            <i class="fas fa-external-link-alt"></i> View announcement
+          </a>
         </div>
-      </li>
+      </div>
 
-      <li class="award-item">
-        <div class="award-icon"><i class="fas fa-star"></i></div>
-        <div class="award-body">
-          <div class="award-title">First Class BBA — GPA 3.99 / 4.0, Rank 1 in Cohort</div>
-          <div class="award-org">Beijing Normal Hong Kong Baptist University</div>
-          <div class="award-year">2021 – 2025</div>
+      <!-- National Scholarship -->
+      <div class="aw-item">
+        <div class="aw-dot" style="background:#fffbf0; border-color:#f0c040;">
+          <span class="aw-dot-inner">⭐</span>
         </div>
-      </li>
-
-      <li class="award-item">
-        <div class="award-icon"><i class="fas fa-award"></i></div>
-        <div class="award-body">
-          <div class="award-title">Dean's List — Excellence Scholarship (×3)</div>
-          <div class="award-org">Beijing Normal Hong Kong Baptist University</div>
-          <div class="award-year">2021 – 2024</div>
+        <div class="aw-body">
+          <div class="aw-row">
+            <div class="aw-title">National Scholarship — 国家奖学金</div>
+            <span class="aw-year">2023</span>
+          </div>
+          <div class="aw-org">Ministry of Education, China</div>
+          <div class="aw-note">China's highest undergraduate honour, awarded to the top 0.2% of students nationally.</div>
         </div>
-      </li>
+      </div>
 
-    </ul>
+      <!-- President's Honor Scholarship -->
+      <div class="aw-item">
+        <div class="aw-dot" style="background:#f0f5ff; border-color:#b0c8f0;">
+          <span class="aw-dot-inner">🎓</span>
+        </div>
+        <div class="aw-body">
+          <div class="aw-row">
+            <div class="aw-title">President's Honor Scholarship — 校长荣誉奖学金</div>
+            <span class="aw-year">2022 – 2024</span>
+          </div>
+          <div class="aw-org">Beijing Normal Hong Kong Baptist University</div>
+          <div class="aw-note">University's most prestigious scholarship for top academic standing and leadership.</div>
+        </div>
+      </div>
+
+      <!-- CMAU -->
+      <div class="aw-item">
+        <div class="aw-dot">
+          <img src="CMAU.jpeg" alt="CMAU" />
+        </div>
+        <div class="aw-body">
+          <div class="aw-row">
+            <div class="aw-title">National Grand Prize — CMAU Market Research Competition</div>
+            <span class="aw-year">2024</span>
+          </div>
+          <div class="aw-org">China Market Research Association (CMAU)</div>
+          <div class="aw-note">First place nationally for original research methodology and strategic market analysis.</div>
+        </div>
+      </div>
+
+
+    </div><!-- /awards-timeline -->
   </div>
 </section>
 
@@ -1198,90 +1634,73 @@
   <div class="container">
     <h2 class="section-heading">Contact</h2>
 
-    <div class="contact-grid">
+    <p class="contact-intro">
+      Please feel free to reach out via email or LinkedIn. I typically reply within one business day.
+    </p>
 
-      <!-- Left: contact info -->
-      <div>
-        <p class="contact-intro">
-          Feel free to reach out if you'd like to discuss research opportunities,
-          internships, or anything at the intersection of quantitative finance and data science.
-          I typically reply within one business day.
-        </p>
+    <div class="contact-cards">
 
-        <ul class="contact-items">
-          <li class="contact-item">
-            <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
-            <div class="contact-item-text">
-              <div class="contact-item-label">Email</div>
-              <div class="contact-item-value">
-                <a href="mailto:ianyihaoma@163.com">ianyihaoma@163.com</a>
-              </div>
-            </div>
-          </li>
-          <li class="contact-item">
-            <div class="contact-item-icon"><i class="fab fa-whatsapp"></i></div>
-            <div class="contact-item-text">
-              <div class="contact-item-label">WhatsApp</div>
-              <div class="contact-item-value">
-                <a href="https://wa.me/447350116442" target="_blank">+44 0735 0116442</a>
-              </div>
-            </div>
-          </li>
-          <li class="contact-item">
-            <div class="contact-item-icon"><i class="fab fa-linkedin"></i></div>
-            <div class="contact-item-text">
-              <div class="contact-item-label">LinkedIn</div>
-              <div class="contact-item-value">
-                <a href="https://www.linkedin.com/in/yihao-ma-9297a42b6/" target="_blank">Yihao Ma</a>
-              </div>
-            </div>
-          </li>
-          <li class="contact-item">
-            <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
-            <div class="contact-item-text">
-              <div class="contact-item-label">Location</div>
-              <div class="contact-item-value">London, United Kingdom</div>
-            </div>
-          </li>
-        </ul>
-      </div>
+      <a class="contact-card" href="mailto:ianyihaoma@163.com">
+        <div class="contact-card-icon"><i class="fas fa-envelope"></i></div>
+        <div>
+          <div class="contact-card-label">Email</div>
+          <div class="contact-card-value">ianyihaoma@163.com</div>
+        </div>
+      </a>
 
-      <!-- Right: contact form (mailto-based) -->
-      <div class="contact-form">
-        <form action="mailto:ianyihaoma@163.com" method="get" enctype="text/plain">
-          <div class="form-group">
-            <label for="cf-name">Your Name</label>
-            <input type="text" id="cf-name" name="name" placeholder="Jane Smith" required />
-          </div>
-          <div class="form-group">
-            <label for="cf-email">Your Email</label>
-            <input type="email" id="cf-email" name="email" placeholder="jane@example.com" required />
-          </div>
-          <div class="form-group">
-            <label for="cf-subject">Subject</label>
-            <input type="text" id="cf-subject" name="subject" placeholder="Research collaboration" />
-          </div>
-          <div class="form-group">
-            <label for="cf-msg">Message</label>
-            <textarea id="cf-msg" name="body" placeholder="Hi Yihao, I'd love to…"></textarea>
-          </div>
-          <button type="submit" class="form-submit">
-            <i class="fas fa-paper-plane"></i> Send Message
-          </button>
-        </form>
-      </div>
+      <a class="contact-card" href="https://wa.me/447350116442" target="_blank">
+        <div class="contact-card-icon" style="background:#e8f8ef; color:#25d366;"><i class="fab fa-whatsapp"></i></div>
+        <div>
+          <div class="contact-card-label">WhatsApp</div>
+          <div class="contact-card-value">+44 735 011 6442</div>
+        </div>
+      </a>
 
-    </div><!-- /contact-grid -->
+      <a class="contact-card" href="https://www.linkedin.com/in/yihao-ma-9297a42b6/" target="_blank">
+        <div class="contact-card-icon" style="background:#e8f0fb; color:#0a66c2;"><i class="fab fa-linkedin"></i></div>
+        <div>
+          <div class="contact-card-label">LinkedIn</div>
+          <div class="contact-card-value">Yihao (Ian) Ma</div>
+        </div>
+      </a>
+
+
+    </div><!-- /contact-cards -->
   </div>
 </section>
 
 
 <footer>
-  © 2026 Yihao (Ian) Ma 马邑昊 &nbsp;·&nbsp;
-  Powered by <a href="https://hugoblox.com" target="_blank">Wowchemy</a>
+  © 2026 Yihao (Ian) Ma 马邑昊
 </footer>
 
 <script>
+/* ── Dark mode ── */
+const themeToggle = document.getElementById('themeToggle');
+const root = document.documentElement;
+const icon = themeToggle.querySelector('i');
+
+function applyTheme(dark) {
+  root.setAttribute('data-theme', dark ? 'dark' : 'light');
+  icon.classList.toggle('fa-moon', !dark);
+  icon.classList.toggle('fa-sun',   dark);
+}
+applyTheme(localStorage.getItem('theme') === 'dark');
+
+themeToggle.addEventListener('click', () => {
+  const isDark = root.getAttribute('data-theme') === 'dark';
+  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+  applyTheme(!isDark);
+});
+
+/* ── Close modals with Escape key ── */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.proj-modal-overlay.open')
+      .forEach(m => m.classList.remove('open'));
+  }
+});
+
 /* ── Nav active highlight on scroll ── */
 const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
 const sections = document.querySelectorAll('section[id]');
@@ -1290,7 +1709,6 @@ window.addEventListener('scroll', () => {
   sections.forEach(s => { if (window.scrollY >= s.offsetTop - 90) cur = s.id; });
   navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + cur));
 });
-
 </script>
 
 </body>
